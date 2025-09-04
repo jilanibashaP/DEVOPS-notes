@@ -138,6 +138,9 @@ cd /d/DEVOPS-notes
 
 
 
+
+
+------------------------------------------------------------------------
 # Linux User Basics
 
 ## User Types
@@ -169,9 +172,56 @@ This command will change the prompt from `$` to `#`, indicating you are now the 
 
 ---
 
+## Important Note: `sudo su` vs `sudo su -`
 
+- **`sudo su`** → Switches to root but stays in the current directory
+- **`sudo su -`** → Switches to root AND changes to root's home directory (`/root`)
 
-# Linux Basic commands
-mkdir <directory-name>
-rmdir <directory-name>
-touch <file-name>
+The `-` (hyphen) makes it a **login shell**, which:
+- Sources root's environment variables
+- Changes to root's home directory
+- Loads root's shell configuration files
+
+---
+
+## Additional Useful Commands
+
+### Check Current Status
+```bash
+# Check current user
+whoami
+
+# Check current directory
+pwd
+
+# Check user ID and groups
+id
+```
+
+---
+
+## Visual Prompt Examples
+- **Normal user**: `ec2-user@hostname:~$`
+- **Root user**: `root@hostname:~#`
+
+---
+
+## Security Best Practices
+
+1. **Prefer `sudo` over `su`**: Use `sudo` for individual commands rather than switching to root permanently
+2. **Use `-` for complete environment**: When switching users, use `sudo su -` for a clean environment
+3. **Exit root promptly**: Don't stay logged in as root longer than necessary
+4. **Check your location**: Use `pwd` to verify your current directory after user switches
+
+---
+
+## Quick Reference
+
+| Command | Description |
+|---------|-------------|
+| `sudo su` | Switch to root (stay in current dir) |
+| `sudo su -` | Switch to root (go to /root) |
+| `sudo command` | Run single command as root |
+| `whoami` | Show current username |
+| `pwd` | Show current directory |
+| `exit` | Return to previous user |
