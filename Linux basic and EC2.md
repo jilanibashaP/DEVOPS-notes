@@ -83,11 +83,95 @@ Firewall setup == security groups
 -> Incoming and outgoing  (inbound and outbound trafic)
 
 
+# How to connect to server using Git Bash
 
-# How to connect to server using the gitbash
-------------------------------------------------------------
-->Take the public ip address = 13.221.76.80
+## Server Details
+- **Public IP Address**: `13.221.76.80`
+- **Username**: `ec2-user` (default)
 
--> userName by default => ec2-user
+## SSH Command Format
+```bash
+ssh -i <private-key file name> ec2-user@<server ip address>
+```
 
--> Command to connect to server using the git bash => ssh -i <private-key file name> ec2-user@<server ip address>
+## Connection Methods
+
+### Method 1: Using Full Path
+If your key file is named `devops-key.pem` and located in `D:\DEVOPS-notes`:
+
+```bash
+ssh -i /d/DEVOPS-notes/devops-key.pem ec2-user@13.221.76.80
+```
+
+### Method 2: From Key Directory
+If you are already in the folder where the key is present:
+
+```bash
+ssh -i devops-key.pem ec2-user@13.221.76.80
+```
+
+## Note
+In Git Bash, navigate to the folder where your private key is stored before running the SSH command.
+OR if you are already in the folder where the key is present:
+
+## Quick Reference Commands
+
+```bash
+# Basic connection
+ssh -i devops-key.pem ec2-user@13.221.76.80
+
+# Full path connection
+ssh -i /d/DEVOPS-notes/devops-key.pem ec2-user@13.221.76.80
+
+# Set key permissions
+chmod 400 devops-key.pem
+
+# Check current directory
+pwd
+
+# List files in current directory
+ls -la
+
+# Navigate to key directory
+cd /d/DEVOPS-notes
+```
+
+
+
+# Linux User Basics
+
+## User Types
+- `$` → **Normal user**
+- `#` → **Root user**
+
+---
+
+## Home Directories
+- Root user home directory:  
+  ```
+  /root
+  ```
+
+- Normal user home directory:  
+  Example (for ec2-user):  
+  ```
+  /home/ec2-user
+  ```
+
+---
+
+## Switching to Root User
+Use the following command to switch from a normal user to the root user:
+```bash
+sudo su
+```
+This command will change the prompt from `$` to `#`, indicating you are now the root user.
+
+---
+
+
+
+# Linux Basic commands
+mkdir <directory-name>
+rmdir <directory-name>
+touch <file-name>
